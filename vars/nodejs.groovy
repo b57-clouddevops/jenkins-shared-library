@@ -4,7 +4,6 @@ lintChecks() {
     sh "node_modules/jslint/bin/jslint.js server.js || true" 
 }
 
-
 def call() {
     pipeline { 
         agent {
@@ -13,7 +12,9 @@ def call() {
         stages {
             stage('Lint Checks') {
                 steps {
-                    nodejs.lintChecks()
+                    script {
+                        nodejs.lintChecks()
+                    }
                 }
             }
 
