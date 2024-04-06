@@ -1,8 +1,10 @@
 def lintchecks() {
-    sh "echo Installing Lint Checker"
-    sh "npm i jslint"
-    sh "echo Performing Lint Checks for $COMPONENT"
-    sh "node_modules/jslint/bin/jslint.js server.js || true" 
+    sh '''
+        echo Installing Lint Checker
+        npm i jslint
+        echo Performing Lint Checks for $COMPONENT
+        node_modules/jslint/bin/jslint.js server.js || true
+    ''' 
 }
 
 def sonarchecks() {
