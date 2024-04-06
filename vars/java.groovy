@@ -34,6 +34,7 @@ def call(COMPONENT) {
             stage('Static Code Analysis') {
                 steps {
                     script {
+                        env.ARGS="-Dsonar.java.binaries=./target/"
                         sonarchecks()
                     }
                 }
