@@ -10,6 +10,9 @@ def lintchecks() {
 def call(COMPONENT) {
     pipeline { 
         agent any
+        environment {
+            NEXUS_URL="172.31.80.115"
+        }
         stages {
             stage('Lint Checks') {
                 steps {

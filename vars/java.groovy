@@ -4,17 +4,12 @@ def lintchecks() {
     sh "echo Lint Checks Completed for $COMPONENT"
 }
 
-def sonarchecks() {
-    sh ''' 
-        echo Sonar Checks Starting for $COMPONENT
-        sonar-scanner  -Dsonar.host.url=http://172.31.80.115:9000 -Dsonar.java.binaries=./target/ -Dsonar.projectKey=${COMPONENT} -Dsonar.login=admin -Dsonar.password=password
-        echo Sonar Checks Starting for $COMPONENT is Completed
-     '''
-}
-
 def call(COMPONENT) {
     pipeline { 
         agent any
+        environment {
+            NEXUS_URL="172.31.80.115"
+        }
         stages {
             stage('Lint Checks') {
                 steps {
@@ -35,7 +30,7 @@ def call(COMPONENT) {
                 steps {
                     script {
                         env.ARGS="-Dsonar.java.binaries=./target/"
-                        sonarchecks()
+                        common.sonarchecks()
                     }
                 }
             }
