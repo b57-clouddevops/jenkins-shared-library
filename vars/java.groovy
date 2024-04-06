@@ -26,7 +26,7 @@ def call(COMPONENT) {
 
             stage('Compiling Java Coe') {
                 steps {
-                    sh "mvn clean compile"
+                    sh "mvn clean compile"                          // For java based projects , you always need to supply binary/class files
                     sh "ls -ltr target/"
                 }
             }
