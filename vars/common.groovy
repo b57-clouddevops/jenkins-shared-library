@@ -5,4 +5,3 @@ def sonarchecks() {
         echo Sonar Checks Starting for $COMPONENT is Completed
      '''
 }
-
