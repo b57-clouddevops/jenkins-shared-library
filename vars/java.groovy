@@ -7,7 +7,7 @@ def lintchecks() {
 def sonarchecks() {
     sh ''' 
         echo Sonar Checks Starting for $COMPONENT
-        sonar-scanner  -Dsonar.host.url=http://172.31.80.115:9000 -Dsonar.sources=. -Dsonar.projectKey=${COMPONENT} -Dsonar.login=admin -Dsonar.password=password
+        sonar-scanner  -Dsonar.host.url=http://172.31.80.115:9000 -Dsonar.java.binaries=./target/ -Dsonar.projectKey=${COMPONENT} -Dsonar.login=admin -Dsonar.password=password
         echo Sonar Checks Starting for $COMPONENT is Completed
      '''
 }
@@ -21,6 +21,13 @@ def call(COMPONENT) {
                     script {
                         lintchecks()
                     }
+                }
+            }
+
+            stage('Compiling Java Coe') {
+                steps {
+                    sh "mvn clean compile"
+                    sh "ls -ltr target/"
                 }
             }
 
