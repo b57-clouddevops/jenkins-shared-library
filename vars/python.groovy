@@ -4,6 +4,14 @@ def lintchecks() {
         sh "echo Style Checks Completed $COMPONENT"
 }
 
+def sonarchecks() {
+    sh ''' 
+        echo Sonar Checks Starting for $COMPONENT
+        sonar-scanner  -Dsonar.host.url=http://172.31.80.115:9000 -Dsonar.sources=. -Dsonar.projectKey=user -Dsonar.login=admin -Dsonar.password=password
+        echo Sonar Checks Starting for $COMPONENT is Completed
+     '''
+}
+
 def call(COMPONENT) {
     pipeline { 
         agent any
@@ -18,7 +26,9 @@ def call(COMPONENT) {
 
             stage('Static Code Analysis') {
                 steps {
-                    sh "echo Static Checks ...."
+                    script {
+                        sonarchecks()
+                    }
                 }
             }
         }
