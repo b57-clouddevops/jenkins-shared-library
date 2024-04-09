@@ -13,3 +13,26 @@ def sonarresult() {
             echo SCAN LOOKS GOOD
         '''
 }
+
+def testcases() {
+        stage('test cases') {
+        def stages = [:]
+
+        stages["Unit Testing"] = {
+            echo "Unit Testing In Progress"
+            echo "Unit Testing Is Completed"
+        }
+
+        stages["Integration Testing"] = {
+            echo "Integration Testing In Progress"
+            echo "Integration Testing Is Completed"
+        }
+
+        stages["Functional Testing"] = {
+            echo "Functional Testing In Progress"
+            echo "InteFunctionalration Testing Is Completed"
+        }
+
+        parallel(stages)
+    }
+}

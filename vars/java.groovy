@@ -44,6 +44,14 @@ def call(COMPONENT) {
                 }
             }
 
+            stage("Testing") {
+                steps {
+                    script {
+                        common.testcases()
+                    }
+                }
+            }
+
         }
     }
 }

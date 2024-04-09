@@ -37,9 +37,11 @@ def call(COMPONENT) {
                 }
             }
 
-            stage('Testing') {
+            stage("Testing") {
                 steps {
-                    sh "echo Testing In Progress"
+                    script {
+                        common.testcases()
+                    }
                 }
             }
         }
