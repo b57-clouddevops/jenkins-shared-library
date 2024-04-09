@@ -9,7 +9,7 @@ def sonarchecks() {
 def sonarresult() {
     sh '''
             curl https://gitlab.com/thecloudcareers/opensource/-/raw/master/lab-tools/sonar-scanner/quality-gate > gate.sh
-            bash gate.sh ${SONAR_CRED_USR} ${SONAR_CRED_PSW} ${NEXUS_URL} ${COMPONENT}
+            bash -x gate.sh ${SONAR_CRED_USR} ${SONAR_CRED_PSW} ${NEXUS_URL} ${COMPONENT}
             echo SCAN LOOKS GOOD
         '''
 }
