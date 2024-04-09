@@ -31,6 +31,11 @@ def call(COMPONENT) {
                     }
                 }
             }
+            stage('Testing') {
+                steps {
+                    sh "echo Testing In Progress"
+                }
+            }
         }
     }
 }
