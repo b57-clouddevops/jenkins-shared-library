@@ -29,6 +29,13 @@ def call(COMPONENT) {
                     }
                 }
             }
+            stage('Get Sonar Result') {
+                steps {
+                    script {
+                        common.sonarresult()
+                    }
+                }
+            }
         }
     }
 }
