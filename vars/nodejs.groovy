@@ -51,10 +51,11 @@ def call(COMPONENT) {
             // Should Only Run Against A Tag
             stage("Making Artifact") {
                 steps {
+                    sh "env"
                     sh "echo Preparing Artifacts"
                 }
             }
-            
+
             // Should Only Run Against A Tag
             stage("Publishing Artifact") {
                 steps {
