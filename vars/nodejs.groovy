@@ -69,7 +69,7 @@ def call(COMPONENT) {
                 steps {
                     sh '''
                         echo Publishing Artifacts
-                        curl -v -u admin:password --upload-file ${COMPONENT}-${TAG_NAME}.zip http://172.31.42.7:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip
+                        curl -f -v -u admin:password --upload-file ${COMPONENT}-${TAG_NAME}.zip http://172.31.42.7:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip
                     '''
 
                 }
