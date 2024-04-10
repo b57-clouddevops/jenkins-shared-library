@@ -54,8 +54,10 @@ def call(COMPONENT) {
                 expression { env.TAG_NAME != null  } 
             }
                 steps {
-                    sh "env"
-                    sh "echo Preparing Artifacts"
+                    sh ''' 
+                        npm install 
+                        zip -r ${COMPONENT}-${TAG_NAME}.zip node_modules server.js 
+                    '''
                 }
             }
 
@@ -65,7 +67,11 @@ def call(COMPONENT) {
                 expression { env.TAG_NAME != null  } 
             }
                 steps {
-                    sh "echo Publishing Artifacts"
+                    sh '''
+                        echo Publishing Artifacts
+                        curl -v -u admin:password --upload-file ${COMPONENT}-${TAG_NAME}.zip http://172.31.42.7:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip
+                    '''
+
                 }
             }
         }
