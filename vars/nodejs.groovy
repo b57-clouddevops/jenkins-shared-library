@@ -50,6 +50,9 @@ def call(COMPONENT) {
             
             // Should Only Run Against A Tag
             stage("Making Artifact") {
+            when { 
+                expression { env.TAG_NAME != null  } 
+            }
                 steps {
                     sh "env"
                     sh "echo Preparing Artifacts"
@@ -58,6 +61,9 @@ def call(COMPONENT) {
 
             // Should Only Run Against A Tag
             stage("Publishing Artifact") {
+            when { 
+                expression { env.TAG_NAME != null  } 
+            }
                 steps {
                     sh "echo Publishing Artifacts"
                 }
