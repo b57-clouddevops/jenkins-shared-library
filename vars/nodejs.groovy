@@ -47,6 +47,20 @@ def call(COMPONENT) {
                     }
                 }
             }
+            
+            // Should Only Run Against A Tag
+            stage("Making Artifact") {
+                steps {
+                    sh "echo Preparing Artifacts"
+                }
+            }
+            
+            // Should Only Run Against A Tag
+            stage("Publishing Artifact") {
+                steps {
+                    sh "echo Publishing Artifacts"
+                }
+            }
         }
     }
 }
