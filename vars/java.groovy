@@ -8,7 +8,7 @@ def call(COMPONENT) {
     pipeline { 
         agent any
         environment {
-            NEXUS_URL="172.31.80.115"
+            NEXUS_URL = "172.31.38.109"
             SONAR_CRED  = credentials('SONAR_CRED')
         }
         stages {
