@@ -1,7 +1,7 @@
 def call() {
     node {
         common.lintchecks()
-        env.ARGS=" -Dsonar.sources=."
+        env.ARGS="-Dsonar.sources=."
         common.sonarchecks()
         common.testcases()
         if(env.TAG_NAME != null) {
