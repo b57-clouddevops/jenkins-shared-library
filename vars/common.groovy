@@ -2,8 +2,8 @@ def lintchecks() {
     stage('Sonar Checks') {
         sh '''
             echo Installing Lint Checker
-            echo Performing Lint Checks for ${COMPONENT}
-            echo Lint Checks Completed for ${COMPONENT}
+            echo Performing Lint Checks 
+            echo Lint Checks Completed
         ''' 
     }
 }
