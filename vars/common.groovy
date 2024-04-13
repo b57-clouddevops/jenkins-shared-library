@@ -78,7 +78,7 @@ def artifacts() {
         }
 
         stage('Publish Artifacts') {
-            
+                sh "echo Publishing Artifacts"
             }
         }
     }
