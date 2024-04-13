@@ -1,5 +1,5 @@
 def lintchecks() {
-    stage('Sonar Checks') {
+    stage('Lint Checks') {
         sh '''
             echo Installing Lint Checker
             echo Performing Lint Checks 
