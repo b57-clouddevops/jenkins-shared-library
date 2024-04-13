@@ -61,6 +61,7 @@ def artifacts() {
     if(env.upload_status == "") {
         stage('Generate Artifacts') {
             if(env.APPTYPE == "nodejs") {
+                sh "ls -ltr"
                 sh "npm install"
                 sh "zip -r ${COMPONENT}-${TAG_NAME}.zip node_modules/ server.js systemd.service"
             }
