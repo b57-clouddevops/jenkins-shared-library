@@ -63,6 +63,7 @@ def call(COMPONENT) {
             stage("Making Artifact") {
             when { 
                 expression { env.TAG_NAME != null  } 
+                expression { env.UPLOAD_STATUS != ""  } 
             }
                 steps {
                     sh ''' 
@@ -76,6 +77,7 @@ def call(COMPONENT) {
             stage("Publishing Artifact") {
             when { 
                 expression { env.TAG_NAME != null  } 
+                expression { env.UPLOAD_STATUS != ""  } 
             }
                 steps {
                     sh '''
