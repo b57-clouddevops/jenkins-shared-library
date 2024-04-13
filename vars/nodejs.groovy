@@ -47,6 +47,17 @@ def call(COMPONENT) {
                     }
                 }
             }
+
+            stage("Checking The Release") {
+            when { 
+                expression { env.TAG_NAME != null  } 
+            }
+                steps {
+                    script {
+                        def upload_status=sh(returnStdout: true, script: "curl -s -L http://172.31.38.109:8081/service/rest/repository/browse/catalogue/ | grep 004")
+                    }
+                }
+            }
             
             // Should Only Run Against A Tag
             stage("Making Artifact") {
