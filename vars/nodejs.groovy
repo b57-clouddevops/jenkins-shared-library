@@ -54,7 +54,8 @@ def call(COMPONENT) {
             }
                 steps {
                     script {
-                        def upload_status=sh(returnStdout: true, script: "curl -s -L http://172.31.38.109:8081/service/rest/repository/browse/catalogue/ | grep 004")
+                        def upload_status=sh(returnStdout: true, script: "curl -s -L http://172.31.38.109:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}")
+                        print upload_status
                     }
                 }
             }
