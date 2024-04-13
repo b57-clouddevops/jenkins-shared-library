@@ -2,8 +2,8 @@ def lintchecks() {
     stage('Sonar Checks') {
         sh '''
             echo Installing Lint Checker
-            echo Performing Lint Checks for $COMPONENT
-            echo Lint Checks Completed for $COMPONENT
+            echo Performing Lint Checks for ${COMPONENT}
+            echo Lint Checks Completed for ${COMPONENT}
         ''' 
     }
 }
@@ -19,11 +19,13 @@ def sonarchecks() {
 }
 
 def sonarresult() {
-    sh '''
-            curl https://gitlab.com/thecloudcareers/opensource/-/raw/master/lab-tools/sonar-scanner/quality-gate > gate.sh
-            # bash -x gate.sh ${SONAR_CRED_USR} ${SONAR_CRED_PSW} ${NEXUS_URL} ${COMPONENT} ||true
-            echo SCAN LOOKS GOOD
-        '''
+    stage {
+        sh '''
+                curl https://gitlab.com/thecloudcareers/opensource/-/raw/master/lab-tools/sonar-scanner/quality-gate > gate.sh
+                # bash -x gate.sh ${SONAR_CRED_USR} ${SONAR_CRED_PSW} ${NEXUS_URL} ${COMPONENT} ||true
+                echo SCAN LOOKS GOOD
+            '''
+    }
 }
 
 def testcases() {
