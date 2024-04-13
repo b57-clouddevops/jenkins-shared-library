@@ -58,7 +58,23 @@ def artifacts() {
     
     if(env.upload_status == "") {
         stage('Generate Artifacts') {
-
+            if(env.APPTYPE == "nodejs") {
+                sh "npm install"
+                sh "zip -r ${COMPONENT}-${TAG_NAME}.zip node_modules/ server.js systemd.service"
+            }
+            else if(env.APPTYPE == "python") {
+                sh "zip -r ${COMPONENT}-${TAG_NAME}.zip *.py *.ini requirements.txt systemd.service"
+                sh "ls -ltr"
+            }
+            else if(env.APPTYPE == "maven") {
+                sh "mvn clean package"
+                sh "mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar"
+                sh "zip -r ${COMPONENT}-${TAG_NAME}.zip  ${COMPONENT}.jar systemd.service"
+            }
+            else if(env.APPTYPE == "angularjs") {
+                sh "cd static/"
+                sh "zip -r ../${COMPONENT}-${TAG_NAME}.zip *"
+            }
         }
 
         stage('Publish Artifacts') {
