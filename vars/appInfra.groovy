@@ -2,7 +2,7 @@ def call() {
     properties([
         parameters([
             choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Environment'),
-            choice(name: 'Action', choices: ['apply', 'destroy'], description: 'Action')                            
+            choice(name: 'ACTION', choices: ['apply', 'destroy'], description: 'Action')                            
         ]),
     ])
     node {
