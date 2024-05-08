@@ -13,27 +13,24 @@ def call() {
                 sh ''' 
                     cd mutable-infra
                     terrafile -f env-${ENV}/Terrafile
-                    terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars
+                    terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars 
                 ''' 
             }
             stage('Terraform Plan') {
                 sh ''' 
                     cd mutable-infra
-                    terraform plan  --var-file=env-${ENV}/${ENV}.tfvars
+                    terraform plan  --var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=${APP_VERSION}
                 ''' 
             }
             stage('Terraform Action') {
                 sh ''' 
                     cd mutable-infra
-                    terraform ${ACTION} -auto-approve --var-file=env-${ENV}/${ENV}.tfvars
+                    terraform ${ACTION} -auto-approve --var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=${APP_VERSION}
                 ''' 
             }
         }
     }
 }
-
-
-terrafile -f env-dev/Terrafile ; terraform init --backend-config=env-dev/dev-backend.tfvars ; terraform plan  --var-file=env-dev/dev.tfvars -var APP_VERSION=004 ;terraform apply -auto-approve --var-file=env-dev/dev.tfvars -var APP_VERSION=004
 
 
 
