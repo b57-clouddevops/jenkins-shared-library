@@ -3,7 +3,7 @@ def call() {
         parameters([
             choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Environment'),
             choice(name: 'ACTION', choices: ['apply', 'destroy'], description: 'Action')      
-            string(name: 'APP_VERSION',  description: 'Enter the version to be deployed')                         
+            string(name: 'APP_VERSION', defaultValue: '000', description: 'Enter Version To Be Deployed')  
         ]),
     ])
     node {
