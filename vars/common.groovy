@@ -75,8 +75,11 @@ def artifacts() {
                 sh "zip -r ${COMPONENT}-${TAG_NAME}.zip  ${COMPONENT}.jar systemd.service"
             }
             else if(env.APPTYPE == "angularjs") {
-                sh "cd static/"
-                sh "zip -r ../${COMPONENT}-${TAG_NAME}.zip *"
+                sh '''cd static/
+                      zip -r ../${COMPONENT}-${TAG_NAME}.zip *
+                      ls -ltr 
+                   ''' 
+
             }
         }
 
