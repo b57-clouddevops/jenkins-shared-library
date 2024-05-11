@@ -66,7 +66,7 @@ def artifacts() {
                 sh "zip -r ${COMPONENT}-${TAG_NAME}.zip node_modules/ server.js systemd.service"
             }
             else if(env.APPTYPE == "python") {
-                sh "zip -r ${COMPONENT}-${TAG_NAME}.zip *.py *.ini requirements.txt systemd.service"
+                sh "zip -r ${COMPONENT}-${TAG_NAME}.zip *.py *.ini requirements.txt"
                 sh "ls -ltr"
             }
             else if(env.APPTYPE == "maven") {
