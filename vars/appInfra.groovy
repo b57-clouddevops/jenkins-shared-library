@@ -7,7 +7,7 @@ def call() {
         ]),
     ])
     node {
-        //ansiColor('xterm') {
+        ansiColor('xterm') {
             git branch: 'main', url: "https://github.com/b57-clouddevops/${COMPONENT}.git"
             stage('Terraform Init') {
                 sh ''' 
@@ -27,7 +27,7 @@ def call() {
                     cd mutable-infra
                     terraform ${ACTION} -auto-approve --var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=${APP_VERSION}
                 ''' 
-            //}
+            }
         }
     }
 }
