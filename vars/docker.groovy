@@ -21,8 +21,8 @@ def call() {
                     sh "zip -r ${COMPONENT}-${TAG_NAME}.zip  ${COMPONENT}.jar"      
                 }
             else if(env.APPTYPE == "angularjs") {
-                      cd static/
-                      zip -r ../${COMPONENT}-${TAG_NAME}.zip *
+                    sh "cd static/"
+                    sh "zip -r ../${COMPONENT}-${TAG_NAME}.zip *"
                 }
             else { sh "echo Selected Component Type Doesnt Exist" }                        
         }
