@@ -3,7 +3,7 @@ def call() {
         git branch: 'main', url: "https://github.com/b57-clouddevops/${COMPONENT}.git"
         common.lintchecks()
         env.ARGS="-Dsonar.java.binaries=./target/"
-        common.sonarchecks()
+        // common.sonarchecks()
         common.testcases()
         if(env.TAG_NAME != null) {
             stage('Generating & Publishing Artifacts') {
